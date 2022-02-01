@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "dbd55f19-7fa6-481b-b4c5-c78c5b9200d4": {
+      "ProjectGuid": "dbd55f19-7fa6-481b-b4c5-c78c5b9200d4",
+      "DisplayName": "VulnManager",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
