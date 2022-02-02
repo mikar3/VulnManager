@@ -12,10 +12,6 @@ namespace VulnManager.Models
         private readonly ApplicationDbContext _context;
         public ICollection<Vulnerability> Vulnerabilities { get; } = new List<Vulnerability>();
 
-        public Cve(string name, double cvss)
-        {
-            Name = name;
-            CVSS = cvss;
-        }
+
     }
 }

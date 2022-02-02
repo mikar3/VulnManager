@@ -67,6 +67,10 @@
             "Shodan": {
               "target": "Package",
               "version": "[2.0.2, )"
+            },
+            "Shodan.Net": {
+              "target": "Package",
+              "version": "[0.3.0, )"
             }
           },
           "imports": [
