@@ -9,10 +9,18 @@ namespace VulnManager.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
+        [Required]
         public int PortNr { get; set; }
         public Server Server { get; set; }
+        [Required]
         public string ServerId { get; set; }
         private readonly ApplicationDbContext _context;
+
+        public Port(int portNr, string serverId)
+        {
+            PortNr = portNr;
+            ServerId = serverId;
+        }
 
 
     }

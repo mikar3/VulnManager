@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VulnManager.Data;
@@ -11,9 +12,10 @@ using VulnManager.Data;
 namespace VulnManager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220203150819_m2")]
+    partial class m2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -264,9 +266,6 @@ namespace VulnManager.Migrations
                     b.Property<string>("Ip")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("LastShodanUpdate")
-                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
