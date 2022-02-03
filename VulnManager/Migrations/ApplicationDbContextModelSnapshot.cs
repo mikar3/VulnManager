@@ -237,11 +237,12 @@ namespace VulnManager.Migrations
 
             modelBuilder.Entity("VulnManager.Models.Port", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("text");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.Property<int>("PortNr")
+                        .HasColumnType("integer");
 
                     b.Property<string>("ServerId")
                         .IsRequired()

@@ -12,8 +12,8 @@ using VulnManager.Data;
 namespace VulnManager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220201190214_m2")]
-    partial class m2
+    [Migration("20220203143222_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -224,6 +224,80 @@ namespace VulnManager.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("VulnManager.Models.Cve", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<double>("CVSS")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Cves");
+                });
+
+            modelBuilder.Entity("VulnManager.Models.Port", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PortNr")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ServerId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServerId");
+
+                    b.ToTable("Ports");
+                });
+
+            modelBuilder.Entity("VulnManager.Models.Server", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Servers");
+                });
+
+            modelBuilder.Entity("VulnManager.Models.Vulnerability", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CveName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ServerId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("VulnerabilityState")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CveName");
+
+                    b.HasIndex("ServerId");
+
+                    b.ToTable("Vulnerabilities");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -273,6 +347,48 @@ namespace VulnManager.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("VulnManager.Models.Port", b =>
+                {
+                    b.HasOne("VulnManager.Models.Server", "Server")
+                        .WithMany("Ports")
+                        .HasForeignKey("ServerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Server");
+                });
+
+            modelBuilder.Entity("VulnManager.Models.Vulnerability", b =>
+                {
+                    b.HasOne("VulnManager.Models.Cve", "Cve")
+                        .WithMany("Vulnerabilities")
+                        .HasForeignKey("CveName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VulnManager.Models.Server", "Server")
+                        .WithMany("Vulnerabilities")
+                        .HasForeignKey("ServerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cve");
+
+                    b.Navigation("Server");
+                });
+
+            modelBuilder.Entity("VulnManager.Models.Cve", b =>
+                {
+                    b.Navigation("Vulnerabilities");
+                });
+
+            modelBuilder.Entity("VulnManager.Models.Server", b =>
+                {
+                    b.Navigation("Ports");
+
+                    b.Navigation("Vulnerabilities");
                 });
 #pragma warning restore 612, 618
         }

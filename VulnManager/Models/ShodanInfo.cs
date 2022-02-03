@@ -6,5 +6,6 @@
 		public int ip { get; set; }
 		public int[] ports { get; set; }
 		public string[] vulns { get; set; }
+		public DateTime last_update { get; set; }
 	}
 }

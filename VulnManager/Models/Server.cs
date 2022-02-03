@@ -20,5 +20,20 @@ namespace VulnManager.Models
             _context = context;
         }
 
+        //public async Task ChangeState(ShodanInfo shodanInfo)
+        //{
+        //    //set vulns
+        //    //set last update
+        //    //set os
+        //    //set ports
+        //    Server.
+
+        //}
+
+        //public async Task SetPorts(string[] ports)
+        //{
+        //    Ports = ports;
+        //}
+
     }
 }
