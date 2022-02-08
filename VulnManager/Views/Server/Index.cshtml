@@ -16,6 +16,7 @@
             <th scope="col">Last Shodan update</th>
             <th scope="col">Vulnerabilities</th>
             <th scope="col">Ports</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -36,9 +37,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => server.Vulnerabilities)
                     </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=server.Id })  |
+                        @Html.ActionLink("Delete", "Delete", new { id=server.Id }) 
+                    </td>
                 </tr>
             }
         }
     </tbody>
-
 </table>

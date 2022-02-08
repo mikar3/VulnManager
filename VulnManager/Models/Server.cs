@@ -2,9 +2,11 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using VulnManager.Data;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace VulnManager.Models
 {
+    [Index(nameof(Ip), IsUnique = true)]
     public class Server
     {
         [Key]
@@ -14,7 +16,7 @@ namespace VulnManager.Models
         [Display(Name = "IP")]
         public string Ip { get; set; }
         [Display(Name = "Last Shodan update")]
-        public DateTime LastShodanUpdate { get; set; }
+        public DateTime? LastShodanUpdate { get; set; }
         private readonly ApplicationDbContext _context;
         public ICollection<Port> Ports { get; } = new List<Port>();
         public ICollection<Vulnerability> Vulnerabilities { get; } = new List<Vulnerability>();
@@ -24,7 +26,10 @@ namespace VulnManager.Models
             _context = context;
         }
 
-        public async Task ChangeStateAsync(ShodanInfo shodanInfo, string serverId)
+		public Server()
+		{ }
+
+		public async Task ChangeStateAsync(ShodanInfo shodanInfo, string serverId)
         {
             var server = _context.Servers.Where(s => s.Id == serverId).FirstOrDefault();
             await server.SetPortsAsync(shodanInfo.ports, serverId);

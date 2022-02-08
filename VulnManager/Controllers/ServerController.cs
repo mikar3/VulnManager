@@ -15,8 +15,23 @@ namespace VulnManager.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var servers = _context.Servers.ToList();
+            return View(servers);
         }
+
+        public IActionResult Create()
+		{
+            return View();
+		}
+
+        [HttpPost]
+        public async Task<IActionResult> Create(string ip)
+		{
+            var server = new Server() { Ip = ip };
+            _context.Add(server);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+		}
 
         public async Task<IActionResult> Details(string id)
         {
