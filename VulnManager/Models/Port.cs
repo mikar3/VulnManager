@@ -10,6 +10,7 @@ namespace VulnManager.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         [Required]
+        [Display(Name = "Port number")]
         public int PortNr { get; set; }
         public Server Server { get; set; }
         [Required]

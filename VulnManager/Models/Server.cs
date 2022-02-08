@@ -11,7 +11,9 @@ namespace VulnManager.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         [Required]
+        [Display(Name = "IP")]
         public string Ip { get; set; }
+        [Display(Name = "Last Shodan update")]
         public DateTime LastShodanUpdate { get; set; }
         private readonly ApplicationDbContext _context;
         public ICollection<Port> Ports { get; } = new List<Port>();

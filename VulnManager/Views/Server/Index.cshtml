@@ -1,7 +1,44 @@
-﻿@{
+﻿@model List<VulnManager.Models.Server>
+
+@{
     ViewData["Title"] = "Server list";
 }
 
-<h2>Server list</h2>
+<h1>Server list</h1>
 
-<p>Hello from our View Template!</p>
+<form method="get" asp-action="Create" class="inline-form">
+    <input type="submit" value="Create" class="btn btn-dark" />
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Ip</th>
+            <th scope="col">Last Shodan update</th>
+            <th scope="col">Vulnerabilities</th>
+            <th scope="col">Ports</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null)
+        {
+            @foreach(var server in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => server.Ip)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => server.LastShodanUpdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => server.Ports)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => server.Vulnerabilities)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
