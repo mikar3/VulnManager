@@ -1,0 +1,11 @@
+﻿@model VulnManager.Models.Server
+
+@{
+	ViewData["Title"] = "Delete";
+}
+
+<h1>Delete server @Model.Ip</h1>
+<form asp-action = "Delete">
+	<input type = "hidden" asp-for = "Ip"/>
+	<input type = "submit" value = "Delete" class = "btn btn-dark"/>
+</form>

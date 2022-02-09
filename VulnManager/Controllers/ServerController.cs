@@ -47,6 +47,33 @@ namespace VulnManager.Controllers
             return View(server);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var server = _context.Servers.Where(s => s.Id == id).FirstOrDefault();
+            //_context.Remove(ip);
+            //await _context.SaveChangesAsync();
+            return View(server);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if(id is null)
+            {
+                return NotFound();
+            }
+            var server = _context.Servers.Where(s => s.Id == id).FirstOrDefault();
+            _context.Remove(server);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
 
 
 
