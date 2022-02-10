@@ -11,7 +11,6 @@ namespace VulnManager.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly HttpClient _httpClient;
-        private ApplicationDbContext context;
 
         public CveDataGetter(ApplicationDbContext context, HttpClient httpClient)
         {
@@ -19,7 +18,7 @@ namespace VulnManager.Services
             _httpClient = httpClient;
         }
 
-        public async Task ScanCvesAsync(ApplicationDbContext context)
+        public async Task ScanCvesAsync()
         {
             var cves = await _context.Cves.ToListAsync();
             if (cves is null)
@@ -28,11 +27,11 @@ namespace VulnManager.Services
             {
                 var url = new Uri("https://olbat.github.io/nvdcve/" + cve.Name + ".json");
                 var cveInfo = await ScanCveAsync(cve.Name, url);
-                await UpdateCvssAsync(cveInfo, cve, context);
+                await UpdateCvssAsync(cveInfo, cve);
             }
         }
 
-        public async Task UpdateCvssAsync(CveInfo cveInfo, Cve cve, ApplicationDbContext _context)
+        public async Task UpdateCvssAsync(CveInfo cveInfo, Cve cve)
         {
             if (cveInfo == null)
             {
