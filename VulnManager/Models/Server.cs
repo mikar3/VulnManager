@@ -29,22 +29,21 @@ namespace VulnManager.Models
 		public Server()
 		{ }
 
-		public async Task ChangeStateAsync(ShodanInfo shodanInfo, string serverId)
+		public async Task ChangeStateAsync(ShodanInfo shodanInfo, Server server, ApplicationDbContext context)
         {
-            var server = _context.Servers.Where(s => s.Id == serverId).FirstOrDefault();
-            await server.SetPortsAsync(shodanInfo.ports, serverId);
-            await server.CreateCvesAsync(shodanInfo.vulns);
-            await server.CreateVulnsAsync(shodanInfo.vulns, serverId);
+            await server.SetPortsAsync(shodanInfo.ports, server.Id, context);
+            await server.CreateCvesAsync(shodanInfo.vulns, context);
+            await server.CreateVulnsAsync(shodanInfo.vulns, server.Id, context);
             await _context.SaveChangesAsync();
         }
 
-        public async Task CreateVulnsAsync(string[] vulns, string serverId)
+        public async Task CreateVulnsAsync(string[] vulns, string serverId, ApplicationDbContext context)
         {
             if (vulns == null)
                 return;
             foreach (var vuln in vulns)
             {
-                var existingVuln = _context.Vulnerabilities.Where(v => v.CveName == vuln && v.ServerId == serverId);
+                var existingVuln = context.Vulnerabilities.Where(v => v.CveName == vuln && v.ServerId == serverId);
                 if(existingVuln == null)
                     continue;
                 var vulnerability = new Vulnerability(serverId, vuln);
@@ -53,13 +52,13 @@ namespace VulnManager.Models
             await _context.SaveChangesAsync();
         }
 
-        public async Task CreateCvesAsync(string[] cves)
+        public async Task CreateCvesAsync(string[] cves, ApplicationDbContext context)
         {
             if (cves == null)
                 return;
             foreach (var cveInfo in cves)
             {
-                var existingCve = _context.Cves.Where(c => c.Name == cveInfo).FirstOrDefault();
+                var existingCve = context.Cves.Where(c => c.Name == cveInfo).FirstOrDefault();
                 if (existingCve == null)
                     continue;
                 var cve = new Cve(cveInfo);
@@ -68,13 +67,13 @@ namespace VulnManager.Models
             await _context.SaveChangesAsync();
         }
 
-        public async Task SetPortsAsync(int[] ports, string serverId)
+        public async Task SetPortsAsync(int[] ports, string serverId, ApplicationDbContext context)
         {
             if(ports == null || ports.Length == 0)
                 return;
             foreach(var portInfo in ports)
             {
-                var existingPort = _context.Ports.Where(p => p.PortNr == portInfo && p.ServerId == serverId).FirstOrDefault();
+                var existingPort = context.Ports.Where(p => p.PortNr == portInfo && p.ServerId == serverId).FirstOrDefault();
                 if (existingPort == null)
                     continue;
                 var port = new Port(portInfo, serverId);

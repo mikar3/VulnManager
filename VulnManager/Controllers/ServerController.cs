@@ -76,7 +76,7 @@ namespace VulnManager.Controllers
         {
             var client = new HttpClient();
             var shodanDataGetter = new Services.ShodanDataGetter(_context, client);
-            await shodanDataGetter.ScanIpsAsync();
+            await shodanDataGetter.ScanIpsAsync(_context);
             return RedirectToAction("Index");
         }
 

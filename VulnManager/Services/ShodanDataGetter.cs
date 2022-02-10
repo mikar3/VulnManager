@@ -32,20 +32,14 @@ namespace VulnManager.Services
             return JsonSerializer.Deserialize<ShodanInfo>(shodanResponseString);
         }
 
-        public async Task SaveResults(ShodanInfo shodanInfo, string ip)
+        public async Task ScanIpsAsync(ApplicationDbContext context)
         {
-            var server = _context.Servers.Where(s => s.Ip == ip).FirstOrDefault();
-            await server.ChangeStateAsync(shodanInfo, server.Id);
-        }
-
-        public async Task ScanIpsAsync()
-        {
-            var serversIps = _context.Servers.Select(s => s.Ip);
-            foreach (string ip in serversIps)
+            var servers = _context.Servers;
+            foreach (var server in servers)
             {
-                var url = new Uri("https://api.shodan.io/shodan/host/" + ip + "?key=" + apiKey);
-                var shodanInfo = await ScanIpAsync(ip, url);
-                await SaveResults(shodanInfo, ip);
+                var url = new Uri("https://api.shodan.io/shodan/host/" + server.Ip + "?key=" + apiKey);
+                var shodanInfo = await ScanIpAsync(server.Ip, url);
+                await server.ChangeStateAsync(shodanInfo, server, context);
             }
         }
     }
