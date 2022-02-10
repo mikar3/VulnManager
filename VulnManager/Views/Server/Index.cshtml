@@ -6,9 +6,15 @@
 
 <h1>Server list</h1>
 
-<form method="get" asp-action="Create" class="inline-form">
-    <input type="submit" value="Create" class="btn btn-dark" />
-</form>
+<div class="btn-group">
+    <form method="get" asp-action="Create" class="inline-form">
+        <input type="submit" value="Create" class="btn btn-dark" />
+    </form>
+    <form method="post" asp-action="Scan" class="inline-form">
+        <input type="submit" value="Scan" class="btn btn-dark" />
+    </form>
+</div>
+
 <table class="table">
     <thead>
         <tr>

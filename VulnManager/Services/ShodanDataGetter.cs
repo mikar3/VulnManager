@@ -14,19 +14,17 @@ namespace VulnManager.Services
         private readonly ApplicationDbContext _context;
         private readonly string apiKey = "qNz6gnKXkbWdt1txXYHoyy5FV77YhD2W";
         private readonly HttpClient _httpClient;
-        private readonly ILogger _logger;
 
-        public ShodanDataGetter(ApplicationDbContext context, HttpClient httpClient, ILogger logger)
+        public ShodanDataGetter(ApplicationDbContext context, HttpClient httpClient)
         {
             _context = context;
             _httpClient = httpClient;
-            _logger = logger;
         }
 
         public async Task<ShodanInfo> ScanIpAsync(string ip, Uri uri)
         {
             var shodanResponse = await _httpClient.GetAsync(uri);
-            if(shodanResponse.StatusCode != System.Net.HttpStatusCode.OK)
+            if(shodanResponse.StatusCode != HttpStatusCode.OK)
             {
                 throw new Exception("Error: code: " + shodanResponse.StatusCode.ToString());
             }
@@ -37,23 +35,18 @@ namespace VulnManager.Services
         public async Task SaveResults(ShodanInfo shodanInfo, string ip)
         {
             var server = _context.Servers.Where(s => s.Ip == ip).FirstOrDefault();
-            //server.ChangeState(shodanInfo);
-            //await _context.SaveChangesAsync();
+            await server.ChangeStateAsync(shodanInfo, server.Id);
         }
 
-        public async Task ScanIpsAsync(List<string> ipsToScan)
+        public async Task ScanIpsAsync()
         {
-            foreach (string ip in ipsToScan)
+            var serversIps = _context.Servers.Select(s => s.Ip);
+            foreach (string ip in serversIps)
             {
                 var url = new Uri("https://api.shodan.io/shodan/host/" + ip + "?key=" + apiKey);
                 var shodanInfo = await ScanIpAsync(ip, url);
                 await SaveResults(shodanInfo, ip);
             }
-            
         }
-
-
-
-
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using VulnManager.Models;
 using VulnManager.Data;
+using VulnManager.Services;
 
 namespace VulnManager.Controllers
 {
@@ -55,8 +55,6 @@ namespace VulnManager.Controllers
                 return NotFound();
             }
             var server = _context.Servers.Where(s => s.Id == id).FirstOrDefault();
-            //_context.Remove(ip);
-            //await _context.SaveChangesAsync();
             return View(server);
         }
 
@@ -74,7 +72,13 @@ namespace VulnManager.Controllers
             return RedirectToAction("Index");
         }
 
-
+        public async Task<IActionResult> Scan()
+        {
+            var client = new HttpClient();
+            var shodanDataGetter = new Services.ShodanDataGetter(_context, client);
+            await shodanDataGetter.ScanIpsAsync();
+            return RedirectToAction("Index");
+        }
 
 
 
