@@ -26,13 +26,19 @@
             @Html.DisplayNameFor(model => model.Ports)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Ports)
+            @{
+                var ports = string.Join(" ", Model.Ports.Select(p => p.PortNr));
+            }
+            @Html.DisplayFor(p => ports)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Vulnerabilities)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Vulnerabilities)
+            @{
+                var vulns = string.Join(" ", Model.Vulnerabilities.Select(v => v.CveName));
+            }
+            @Html.DisplayFor(v => vulns)
         </dd>
     </dl>
 </div>

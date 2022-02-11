@@ -51,6 +51,9 @@ namespace VulnManager.Services
             await SetPortsAsync(shodanInfo.ports, server.Id);
             await CreateCvesAsync(shodanInfo.vulns);
             await CreateVulnsAsync(shodanInfo.vulns, server.Id);
+            server.LastShodanUpdate = shodanInfo.last_update;
+            _context.Update(server);
+            await _context.SaveChangesAsync();
         }
 
         public async Task CreateVulnsAsync(string[] vulns, string serverId)
@@ -90,7 +93,7 @@ namespace VulnManager.Services
             foreach (var portInfo in ports)
             {
                 var existingPort = _context.Ports.Where(p => p.PortNr == portInfo && p.ServerId == serverId).FirstOrDefault();
-                if (existingPort == null)
+                if (existingPort != null)
                     continue;
                 var port = new Port(portInfo, serverId);
                 await _context.AddAsync(port);

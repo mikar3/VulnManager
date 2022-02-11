@@ -2,6 +2,7 @@
 using VulnManager.Models;
 using VulnManager.Data;
 using VulnManager.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace VulnManager.Controllers
 {
@@ -15,7 +16,7 @@ namespace VulnManager.Controllers
 
         public IActionResult Index()
         {
-            var servers = _context.Servers.ToList();
+            var servers = _context.Servers.Include(v => v.Vulnerabilities).Include(p => p.Ports).ToList();
             return View(servers);
         }
 
@@ -39,7 +40,7 @@ namespace VulnManager.Controllers
             {
                 return NotFound();
             }
-            var server = _context.Servers.Where(s => s.Id == id).FirstOrDefault();
+            var server = _context.Servers.Include(v=>v.Vulnerabilities).Include(p=>p.Ports).Where(s => s.Id == id).FirstOrDefault();
             if (server == null)
             {
                 return NotFound();
