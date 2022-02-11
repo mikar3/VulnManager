@@ -19,8 +19,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/piotr/source/repos/VulnManager/VulnManager/Views/CVE/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZFXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/piotr/source/repos/VulnManager/VulnManager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/piotr/source/repos/VulnManager/VulnManager/Views/Port/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9ydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/piotr/source/repos/VulnManager/VulnManager/Views/Server/Create.cshtml]

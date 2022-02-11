@@ -1,0 +1,33 @@
+﻿@model List<VulnManager.Models.Port>
+
+@{
+    ViewData["Title"] = "Ports list";
+}
+
+<h1>Ports list</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">IP</th>
+            <th scope="col">Port</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null)
+        {
+            @foreach(var port in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => port.Server.Ip)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => port.PortNr)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
