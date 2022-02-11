@@ -19,5 +19,14 @@ namespace VulnManager.Controllers
             var cves = _context.Cves.ToList();
             return View(cves);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCves()
+        {
+            var client = new HttpClient();
+            var cveDataGetter = new CveDataGetter(_context, client);
+            await cveDataGetter.ScanCvesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
