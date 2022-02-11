@@ -55,6 +55,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVnVsbmVyYWJpbGl0eVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/piotr/source/repos/VulnManager/VulnManager/Views/Vulnerability/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVnVsbmVyYWJpbGl0eVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/piotr/source/repos/VulnManager/VulnManager/Views/Vulnerability/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVnVsbmVyYWJpbGl0eVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

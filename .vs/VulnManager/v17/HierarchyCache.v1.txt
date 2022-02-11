@@ -3,13 +3,13 @@ i:{00000000-0000-0000-0000-000000000000}:VulnManager.sln
 ++VulnManager
 i:{00000000-0000-0000-0000-000000000000}:VulnManager
 ++Connected Services 
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>513
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>523
 ++Properties
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\properties\
 ++wwwroot
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\wwwroot\
 ++Zależności
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>512
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>522
 ++Areas
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\areas\
 ++Controllers
@@ -28,6 +28,8 @@ i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\models\
 ++Cve.cs
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\models\cve.cs
+++CveInfo.cs
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\models\cveinfo.cs
 ++ErrorViewModel.cs
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\models\errorviewmodel.cs
 ++Port.cs
@@ -40,6 +42,10 @@ i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\models\vulnerability.cs
 ++Services
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\services\
+++CveDataGetter.cs
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\services\cvedatagetter.cs
+++ShodanDataGetter.cs
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\services\shodandatagetter.cs
 ++Views
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\views\
 ++Home
@@ -56,6 +62,7 @@ i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\views\server\delete.cshtml
 ++Details.cshtml
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\views\server\details.cshtml
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\views\vulnerability\details.cshtml
 ++Shared
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\views\shared\
 ++_Layout.cshtml
@@ -78,7 +85,7 @@ i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager
 ++Program.cs
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\program.cs
 ++Lokalna baza danych SQL Server Express (lokalna) (ConnectionStrings:DefaultConnection)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>545
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>550
 ++launchSettings.json
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\properties\launchsettings.json
 ++serviceDependencies.json
@@ -117,8 +124,6 @@ i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\migrations\20220208203200_qwe.cs
 ++ApplicationDbContextModelSnapshot.cs
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\migrations\applicationdbcontextmodelsnapshot.cs
-++ShodanDataGetter.cs
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\services\shodandatagetter.cs
 ++_Layout.cshtml.css
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\views\shared\_layout.cshtml.css
 ++appsettings.Development.json
@@ -162,21 +167,21 @@ i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\program files\dotnet\sdk\6.0.101\sdk
 ++System.Text.Json.SourceGeneration
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.1\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 ++Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (6.0.1)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>527
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>544
 ++Microsoft.AspNetCore.Identity.EntityFrameworkCore (6.0.1)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>529
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>546
 ++Microsoft.AspNetCore.Identity.UI (6.0.1)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>532
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>549
 ++Microsoft.EntityFrameworkCore.SqlServer (6.0.1)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>525
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>542
 ++Microsoft.EntityFrameworkCore.Tools (6.0.1)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>531
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>548
 ++Npgsql.EntityFrameworkCore.PostgreSQL (6.0.3)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>530
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>547
 ++Shodan (2.0.2)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>526
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>543
 ++Shodan.Net (0.3.0)
-i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>528
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:>545
 ++Microsoft.AspNetCore.App
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\microsoft.aspnetcore.app
 ++Microsoft.NETCore.App
@@ -312,3 +317,5 @@ i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
 ++bootstrap.esm.min.js.map
 i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+++Edit.cshtml
+i:{dbd55f19-7fa6-481b-b4c5-c78c5b9200d4}:c:\users\piotr\source\repos\vulnmanager\vulnmanager\views\vulnerability\edit.cshtml
