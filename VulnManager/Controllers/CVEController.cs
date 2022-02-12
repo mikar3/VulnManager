@@ -3,15 +3,19 @@ using VulnManager.Models;
 using VulnManager.Data;
 using VulnManager.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VulnManager.Controllers
 {
+    [Authorize]
     public class CVEController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public CVEController(ApplicationDbContext context)
+        private readonly ILogger<CVEController> _logger;
+        public CVEController(ApplicationDbContext context, ILogger<CVEController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -23,6 +27,7 @@ namespace VulnManager.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCves()
         {
+            _logger.LogInformation($"{User.Identity.Name} updates CVE at {DateTime.Now}");
             var client = new HttpClient();
             var cveDataGetter = new CveDataGetter(_context, client);
             await cveDataGetter.ScanCvesAsync();

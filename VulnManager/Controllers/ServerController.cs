@@ -3,16 +3,20 @@ using VulnManager.Models;
 using VulnManager.Data;
 using VulnManager.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VulnManager.Controllers
 {
+    [Authorize]
     public class ServerController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public ServerController(ApplicationDbContext context)
+        private readonly ILogger<CVEController> _logger;
+        public ServerController(ApplicationDbContext context, ILogger<CVEController> logger)
         {
             _context = context;
-        }
+            _logger = logger;
+    }
 
         public IActionResult Index()
         {
@@ -31,6 +35,7 @@ namespace VulnManager.Controllers
             var server = new Server() { Ip = ip };
             _context.Add(server);
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"{User.Identity.Name} creates server {server.Ip} at {DateTime.Now}");
             return RedirectToAction("Index");
 		}
 
@@ -68,6 +73,7 @@ namespace VulnManager.Controllers
                 return NotFound();
             }
             var server = _context.Servers.Where(s => s.Id == id).FirstOrDefault();
+            _logger.LogInformation($"{User.Identity.Name} deletes server {server.Ip} at {DateTime.Now}");
             _context.Remove(server);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -77,6 +83,7 @@ namespace VulnManager.Controllers
         {
             var client = new HttpClient();
             var shodanDataGetter = new Services.ShodanDataGetter(_context, client);
+            _logger.LogInformation($"{User.Identity.Name} scans server at {DateTime.Now}");
             await shodanDataGetter.ScanIpsAsync();
             return RedirectToAction("Index");
         }
